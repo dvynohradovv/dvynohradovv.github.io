@@ -14,6 +14,36 @@ document.addEventListener("DOMContentLoaded", () => {
   let suggestions: string[] = [];
   let suggestionIndex = 0;
 
+  const runCommand = (command: keyof typeof commands) => {
+    const commandElement = document.createElement("div");
+    commandElement.innerHTML = `<span class="text-green-400">visitor@dvynohradov:~$</span><span class="ml-2">${command}</span>`;
+    history.appendChild(commandElement);
+
+    if (command) {
+      commandHistory.push(command);
+      historyIndex = commandHistory.length;
+
+      if (command === "clear") {
+        history.innerHTML = "";
+      } else if (commands[command]) {
+        const output = document.createElement("div");
+        output.className = "mb-4";
+        history.appendChild(output);
+        const result =
+          typeof commands[command] === "function"
+            ? (commands[command] as () => string)()
+            : (commands[command] as string);
+        type(output, result);
+      } else {
+        const output = document.createElement("div");
+        output.className = "mb-4";
+        history.appendChild(output);
+        type(output, `bash: command not found: ${command}`);
+      }
+    }
+    terminalBody.scrollTop = terminalBody.scrollHeight;
+  };
+
   const commands = {
     clear: "",
     help: `
@@ -130,32 +160,7 @@ document.addEventListener("DOMContentLoaded", () => {
         .trim()
         .toLowerCase() as keyof typeof commands;
 
-      const commandElement = document.createElement("div");
-      commandElement.innerHTML = `<span class="text-green-400">visitor@dvynohradov:~$</span><span class="ml-2">${command}</span>`;
-      history.appendChild(commandElement);
-
-      if (command) {
-        commandHistory.push(command);
-        historyIndex = commandHistory.length;
-
-        if (command === "clear") {
-          history.innerHTML = "";
-        } else if (commands[command]) {
-          const output = document.createElement("div");
-          output.className = "mb-4";
-          history.appendChild(output);
-          const result =
-            typeof commands[command] === "function"
-              ? (commands[command] as () => string)()
-              : (commands[command] as string);
-          type(output, result);
-        } else {
-          const output = document.createElement("div");
-          output.className = "mb-4";
-          history.appendChild(output);
-          type(output, `bash: command not found: ${command}`);
-        }
-      }
+      runCommand(command);
 
       commandInput.value = "";
       commandInput.dispatchEvent(new Event("input"));
@@ -192,4 +197,6 @@ document.addEventListener("DOMContentLoaded", () => {
   terminalBody.addEventListener("click", () => {
     commandInput.focus();
   });
+
+  runCommand("about");
 });
