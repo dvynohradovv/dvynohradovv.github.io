@@ -11,6 +11,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const commandHistory: string[] = [];
   let historyIndex = 0;
+  let suggestions: string[] = [];
+  let suggestionIndex = 0;
 
   const commands = {
     clear: "",
@@ -98,7 +100,31 @@ document.addEventListener("DOMContentLoaded", () => {
   };
 
   commandInput.addEventListener("keydown", (e) => {
-    if (e.key === "Enter") {
+    const isSuggestionKey = e.key === "Tab";
+    const isHistoryKey = e.key === "ArrowUp" || e.key === "ArrowDown";
+
+    if (!isSuggestionKey && !isHistoryKey) {
+      suggestions = [];
+      suggestionIndex = 0;
+    }
+
+    if (isSuggestionKey) {
+      e.preventDefault();
+      const currentInput = commandInput.value.toLowerCase();
+
+      if (suggestions.length === 0) {
+        suggestions = Object.keys(commands).filter((cmd) =>
+          cmd.startsWith(currentInput),
+        );
+        suggestionIndex = 0;
+      }
+
+      if (suggestions.length > 0) {
+        commandInput.value = suggestions[suggestionIndex];
+        suggestionIndex = (suggestionIndex + 1) % suggestions.length;
+        commandInput.dispatchEvent(new Event("input"));
+      }
+    } else if (e.key === "Enter") {
       e.preventDefault();
       const command = commandInput.value
         .trim()
