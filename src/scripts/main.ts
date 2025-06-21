@@ -52,49 +52,38 @@ document.addEventListener("DOMContentLoaded", () => {
         <li><span class="text-green-400">about</span> - Who I am</li>
         <li><span class="text-green-400">skills</span> - My technical skills</li>
         <li><span class="text-green-400">experience</span> - My work experience</li>
-        <li><span class="text-green-400">projects</span> - Some of my projects</li>
+        <li><span class="text-green-400">philosophy</span> - My development philosophy</li>
         <li><span class="text-green-400">contact</span> - How to reach me</li>
         <li><span class="text-green-400">date</span> - Display the current date</li>
         <li><span class="text-green-400">clear</span> - Clear the terminal screen</li>
       </ul>
     `,
     about:
-      "<p>My name is Dmytro Vynohradov. I am a passionate developer who loves building things for the web. I specialize in creating modern, responsive, and user-friendly applications.</p>",
+      "<p>I'm a Full-Stack Software Engineer who thrives on building complex, mission-critical systems. 🚀 Currently, I'm engineering the core platform that powers the law-making process for U.S. state governments. I handle the full stack, from Python backend services (Django, GraphQL) to React-based web apps and even some C#/.NET plugins for Microsoft Office. It's pretty cool stuff! (⌐■_■)</p>",
     skills: `
-      <p>My skills include:</p>
+      <p>Here's my tech toolbox 🧰:</p>
       <ul class="list-inside list-disc">
-        <li>JavaScript (ES6+) & TypeScript</li>
-        <li>React & Next.js</li>
-        <li>Astro</li>
-        <li>Node.js</li>
-        <li>Tailwind CSS</li>
-        <li>Git & GitHub</li>
+        <li><strong>Backend:</strong> Python (Django, GraphQL), Node.js</li>
+        <li><strong>Frontend:</strong> React, Next.js, JavaScript (ES6+), TypeScript, Astro, Tailwind CSS</li>
+        <li><strong>Desktop:</strong> C#/.NET (for MS Office plugins)</li>
+        <li><strong>Databases:</strong> PostgreSQL, Elasticsearch, Redis</li>
+        <li><strong>DevOps:</strong> Docker, CI/CD</li>
+        <li><strong>Methodologies:</strong> SOLID, Clean Code</li>
+        <li><strong>Version Control:</strong> Git & GitHub</li>
       </ul>
     `,
     experience: `
-      <div>
-        <p class="font-bold">Senior Developer at TechCorp (2022 - Present)</p>
-        <p class="pl-4">- Led the development of a new e-commerce platform, improving performance by 30%.</p>
-        <p class="pl-4">- Mentored junior developers and conducted code reviews.</p>
-      </div>
-      <div class="mt-2">
-        <p class="font-bold">Junior Developer at WebSolutions (2020 - 2022)</p>
-        <p class="pl-4">- Built and maintained client websites using modern web technologies.</p>
-      </div>
+      <p>I've ventured through diverse domains like fintech, where I automated financial data processing, and B2B compliance platforms. 🏦 My experience has taught me that robust systems are built on a solid foundation. I'm all about that clean, maintainable code (SOLID principles!), fully automated CI/CD pipelines with Docker, and using the right data tools for the job, like PostgreSQL, Elasticsearch, and Redis. 🛠️</p>
     `,
-    projects: `
-      <p>Some of my projects:</p>
-      <ul class="list-inside list-disc">
-        <li><a href="#" target="_blank" class="text-blue-400 underline">Project One</a> - A brief description of this awesome project.</li>
-        <li><a href="#" target="_blank" class="text-blue-400 underline">Project Two</a> - Another cool project that showcases my skills.</li>
-      </ul>
+    philosophy: `
+      <p>I'm a firm believer that the best products come from strong, collaborative teams. 🤝 I love participating in code reviews, sharing knowledge, and mentoring junior developers. I think a team's collective growth is the secret sauce to an amazing final product. I'm on the lookout for a new challenge where I can tackle tough technical problems in a place that values engineering excellence. ✨ Let's build something great together! (づ｡◕‿‿◕｡)づ</p>
     `,
     contact: `
       <p>You can reach me at:</p>
       <ul class="list-inside list-disc">
-        <li>Email: <a href="mailto:your.email@example.com" class="text-blue-400 underline">your.email@example.com</a></li>
-        <li>LinkedIn: <a href="#" target="_blank" class="text-blue-400 underline">linkedin.com/in/yourprofile</a></li>
-        <li>GitHub: <a href="#" target="_blank" class="text-blue-400 underline">github.com/yourusername</a></li>
+        <li>Email: <a href="mailto:dvynohradovv@proton.me" class="text-blue-400 underline">dvynohradovv@proton.me</a></li>
+        <li>LinkedIn: <a href="https://www.linkedin.com/in/dvynohradov/" target="_blank" class="text-blue-400 underline">https://www.linkedin.com/in/dvynohradov/</a></li>
+        <li>GitHub: <a href="https://github.com/dvynohradov" target="_blank" class="text-blue-400 underline">https://github.com/dvynohradov</a></li>
       </ul>
     `,
     date: () => new Date().toDateString(),
