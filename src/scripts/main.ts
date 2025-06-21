@@ -14,40 +14,48 @@ document.addEventListener("DOMContentLoaded", () => {
   let suggestions: string[] = [];
   let suggestionIndex = 0;
 
-  const runCommand = (command: keyof typeof commands) => {
+  const runCommand = (
+    command: keyof typeof commands,
+    onComplete?: () => void,
+  ) => {
+    if (!command) {
+      if (onComplete) onComplete();
+      return;
+    }
+
     const commandElement = document.createElement("div");
     commandElement.innerHTML = `<span class="text-green-400">visitor@dvynohradov:~$</span><span class="ml-2">${command}</span>`;
     history.appendChild(commandElement);
 
-    if (command) {
-      commandHistory.push(command);
-      historyIndex = commandHistory.length;
+    commandHistory.push(command);
+    historyIndex = commandHistory.length;
 
-      if (command === "clear") {
-        history.innerHTML = "";
-      } else if (commands[command]) {
-        const output = document.createElement("div");
-        output.className = "mb-4";
-        history.appendChild(output);
-        const result =
-          typeof commands[command] === "function"
-            ? (commands[command] as () => string)()
-            : (commands[command] as string);
-        type(output, result);
-      } else {
-        const output = document.createElement("div");
-        output.className = "mb-4";
-        history.appendChild(output);
-        type(output, `bash: command not found: ${command}`);
-      }
+    if (command === "clear") {
+      history.innerHTML = "";
+      if (onComplete) onComplete();
+    } else if (commands[command]) {
+      const output = document.createElement("div");
+      output.className = "mb-4";
+      history.appendChild(output);
+      const result =
+        typeof commands[command] === "function"
+          ? (commands[command] as () => string)()
+          : (commands[command] as string);
+      type(output, result, onComplete);
+    } else {
+      const output = document.createElement("div");
+      output.className = "mb-4";
+      history.appendChild(output);
+      type(output, `bash: command not found: ${command}`, onComplete);
     }
+
     terminalBody.scrollTop = terminalBody.scrollHeight;
   };
 
   const commands = {
     clear: "",
     help: `
-      <p>Available commands:</p>
+      <p>Here are the available commands (o_o):</p>
       <ul class="list-inside list-disc">
         <li><span class="text-green-400">about</span> - Who I am</li>
         <li><span class="text-green-400">skills</span> - My technical skills</li>
@@ -59,27 +67,24 @@ document.addEventListener("DOMContentLoaded", () => {
       </ul>
     `,
     about:
-      "<p>I'm a Full-Stack Software Engineer who thrives on building complex, mission-critical systems. 🚀 Currently, I'm engineering the core platform that powers the law-making process for U.S. state governments. I handle the full stack, from Python backend services (Django, GraphQL) to React-based web apps and even some C#/.NET plugins for Microsoft Office. It's pretty cool stuff! (⌐■_■)</p>",
+      "<p>I'm a Full-Stack Software Engineer who thrives on building complex, mission-critical systems. 🚀 Currently, I'm engineering the core platform that powers the law-making process for U.S. state governments. I handle the full stack, from Python backend services (Django, GraphQL) to React-based web apps and even some C#/.NET plugins for Microsoft Office. It's pretty cool stuff! (⌐■_■)b</p>",
     skills: `
-      <p>Here's my tech toolbox 🧰:</p>
+      <p>Here's my tech toolbox 🧰: (＾▽＾)/</p>
       <ul class="list-inside list-disc">
-        <li><strong>Backend:</strong> Python (Django, GraphQL), Node.js</li>
+        <li><strong>Backend:</strong> Python (Django, GraphQL), Node.js, C#/.NET</li>
         <li><strong>Frontend:</strong> React, Next.js, JavaScript (ES6+), TypeScript, Astro, Tailwind CSS</li>
-        <li><strong>Desktop:</strong> C#/.NET (for MS Office plugins)</li>
-        <li><strong>Databases:</strong> PostgreSQL, Elasticsearch, Redis</li>
-        <li><strong>DevOps:</strong> Docker, CI/CD</li>
-        <li><strong>Methodologies:</strong> SOLID, Clean Code</li>
-        <li><strong>Version Control:</strong> Git & GitHub</li>
+        <li><strong>Databases:</strong> PostgreSQL, MongoDB, Elasticsearch, Redis</li>
+        <li><strong>DevOps:</strong> AWS, Jenkins, Docker, GitHub Workflows, CI/CD</li>
       </ul>
     `,
     experience: `
-      <p>I've ventured through diverse domains like fintech, where I automated financial data processing, and B2B compliance platforms. 🏦 My experience has taught me that robust systems are built on a solid foundation. I'm all about that clean, maintainable code (SOLID principles!), fully automated CI/CD pipelines with Docker, and using the right data tools for the job, like PostgreSQL, Elasticsearch, and Redis. 🛠️</p>
+      <p>I've ventured through diverse domains like fintech, where I automated financial data processing, and B2B compliance platforms. 🏦 My experience has taught me that robust systems are built on a solid foundation. I'm all about that clean, maintainable code (SOLID principles!), fully automated CI/CD pipelines with Docker, and using the right data tools for the job, like PostgreSQL, Elasticsearch, and Redis. It's all about building things that last! (▀̿Ĺ̯▀̿ ̿)</p>
     `,
     philosophy: `
       <p>I'm a firm believer that the best products come from strong, collaborative teams. 🤝 I love participating in code reviews, sharing knowledge, and mentoring junior developers. I think a team's collective growth is the secret sauce to an amazing final product. I'm on the lookout for a new challenge where I can tackle tough technical problems in a place that values engineering excellence. ✨ Let's build something great together! (づ｡◕‿‿◕｡)づ</p>
     `,
     contact: `
-      <p>You can reach me at:</p>
+      <p>You can reach me here: (☞ﾟヮﾟ)☞</p>
       <ul class="list-inside list-disc">
         <li>Email: <a href="mailto:dvynohradovv@proton.me" class="text-blue-400 underline">dvynohradovv@proton.me</a></li>
         <li>LinkedIn: <a href="https://www.linkedin.com/in/dvynohradov/" target="_blank" class="text-blue-400 underline">https://www.linkedin.com/in/dvynohradov/</a></li>
@@ -149,7 +154,9 @@ document.addEventListener("DOMContentLoaded", () => {
         .trim()
         .toLowerCase() as keyof typeof commands;
 
-      runCommand(command);
+      if (command) {
+        runCommand(command);
+      }
 
       commandInput.value = "";
       commandInput.dispatchEvent(new Event("input"));
@@ -187,5 +194,7 @@ document.addEventListener("DOMContentLoaded", () => {
     commandInput.focus();
   });
 
-  runCommand("about");
+  runCommand("about", () => {
+    runCommand("skills");
+  });
 });
