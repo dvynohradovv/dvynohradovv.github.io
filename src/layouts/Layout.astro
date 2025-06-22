@@ -34,13 +34,51 @@ const { title } = Astro.props;
       <div class="overlay"></div>
     </div>
     <slot />
-    <div class="video-credit">
-      Video by <a
-        href="https://www.pexels.com/@jibarofoto/"
-        target="_blank"
-        rel="noopener noreferrer">Jibaro foto</a
-      >
+
+    <div class="footer-links">
+      <div class="social-links">
+        <a
+          href="mailto:dvynohradovv@proton.me"
+          aria-label="Email"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <i class="fas fa-envelope"></i>
+        </a>
+        <a
+          href="https://www.linkedin.com/in/dvynohradov/"
+          aria-label="LinkedIn"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <i class="fab fa-linkedin"></i>
+        </a>
+        <a
+          href="https://github.com/dvynohradovv"
+          aria-label="GitHub"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <i class="fab fa-github"></i>
+        </a>
+        <a
+          href="https://t.me/dvynohradov"
+          aria-label="Telegram"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <i class="fab fa-telegram"></i>
+        </a>
+      </div>
+      <div class="video-credit">
+        Video by <a
+          href="https://www.pexels.com/@jibarofoto/"
+          target="_blank"
+          rel="noopener noreferrer">Jibaro foto</a
+        >
+      </div>
     </div>
+
     <script>
       const video = document.getElementById("bg-video") as HTMLVideoElement;
       if (video) {
@@ -75,13 +113,39 @@ const { title } = Astro.props;
     background-color: rgba(0, 0, 0, 0.5);
   }
 
-  .video-credit {
+  .footer-links {
     position: fixed;
     bottom: 10px;
-    right: 10px;
+    left: 0;
+    right: 0;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 100;
+    padding: 0 20px;
+    box-sizing: border-box;
+  }
+
+  .social-links {
+    display: flex;
+    gap: 15px;
+  }
+
+  .social-links a {
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 1.25rem;
+    transition: all 0.2s ease-in-out;
+  }
+
+  .social-links a:hover {
+    color: white;
+    transform: scale(1.1);
+  }
+
+  .video-credit {
     font-size: 0.75rem;
     color: rgba(255, 255, 255, 0.5);
-    z-index: 100;
   }
 
   .video-credit a {
