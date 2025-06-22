@@ -1,48 +1,56 @@
-# Astro Starter Kit: Basics
+# > Terminal Portfolio
 
-```sh
-npm create astro@latest -- --template basics
-```
+Welcome to my interactive terminal portfolio. This project, built with Astro, mimics a command-line interface where you can explore my skills, projects, and more. Type `help` to get started and see a list of available commands.
 
-[![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/withastro/astro/tree/latest/examples/basics)
-[![Open with CodeSandbox](https://assets.codesandbox.io/github/button-edit-lime.svg)](https://codesandbox.io/p/sandbox/github/withastro/astro/tree/latest/examples/basics)
-[![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new/withastro/astro?devcontainer_path=.devcontainer/basics/devcontainer.json)
+## About Me
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+Full-Stack Software Engineer specializing in the development of complex and mission-critical systems. My current work involves building the core platform that powers the law-making process for U.S. state governments, where I am responsible for the full technology stack: from backend services in Python (Django, GraphQL) to user-facing web applications in React and specialized C#/.NET plug-ins for Microsoft Office.
 
-![just-the-basics](https://github.com/withastro/astro/assets/2244813/a0a5533c-a856-4198-8470-2d67b1d7c554)
+My experience spans diverse domains, from fintech, where I've built systems for automating financial data processing, to b2b compliance platforms. Regardless of the product, I believe that robust systems are built on a solid foundation: clean, maintainable code (SOLID), a fully automated path to production (CI/CD, Docker), and a pragmatic approach to data management, using the right tool for the job (PostgreSQL, ElasticSearch, Redis).
 
-## 🚀 Project Structure
+I am convinced that the best products are created by strong, collaborative teams. I actively contribute to this by participating in code reviews, sharing knowledge, and mentoring junior colleagues, understanding that the team's collective growth is the best way to improve the final product. I am looking for an opportunity to apply my skills to solve challenging technical problems in an environment that values engineering excellence.
 
-Inside of your Astro project, you'll see the following folders and files:
+## Technology Stack
 
-```text
-/
-├── public/
-│   └── favicon.svg
-├── src/
-│   ├── layouts/
-│   │   └── Layout.astro
-│   └── pages/
-│       └── index.astro
-└── package.json
-```
+This project is built with modern web technologies, including:
 
-To learn more about the folder structure of an Astro project, refer to [our guide on project structure](https://docs.astro.build/en/basics/project-structure/).
+- **[Astro](https://astro.build/)**: The web framework for building fast, content-focused websites.
+- **[Tailwind CSS](https://tailwindcss.com/)**: A utility-first CSS framework for rapid UI development.
+- **[TypeScript](https://www.typescriptlang.org/)**: For type-safe code.
 
-## 🧞 Commands
+## Getting Started
 
-All commands are run from the root of the project, from a terminal:
+To get a local copy up and running, follow these simple steps.
 
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `npm install`             | Installs dependencies                            |
-| `npm run dev`             | Starts local dev server at `localhost:4321`      |
-| `npm run build`           | Build your production site to `./dist/`          |
-| `npm run preview`         | Preview your build locally, before deploying     |
-| `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `npm run astro -- --help` | Get help using the Astro CLI                     |
+### Prerequisites
 
-## 👀 Want to learn more?
+Make sure you have [Node.js](https://nodejs.org/) (v18 or newer) and npm installed on your machine.
 
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+### Installation
+
+1. Clone the repo:
+   ```sh
+   git clone https://github.com/dvynohradovv/dvynohradovv.github.io.git
+   ```
+2. Navigate into the project directory:
+   ```sh
+   cd dvynohradovv.github.io
+   ```
+3. Install NPM packages:
+   ```sh
+   npm install
+   ```
+
+## Available Scripts
+
+In the project directory, you can run:
+
+- `npm run dev`: Starts the development server at `http://localhost:4321`.
+- `npm run build`: Builds the app for production to the `dist` folder.
+- `npm run preview`: Serves the production build locally for preview.
+- `npm run astro check`: Runs type-checking for all TypeScript files.
+- `npm run prettier:write`: Formats all files using Prettier.
+
+## Deployment
+
+This site is automatically deployed to GitHub Pages using a [GitHub Actions workflow](./.github/workflows/deploy.yml) whenever new changes are pushed to the `source` branch.
