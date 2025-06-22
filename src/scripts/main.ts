@@ -52,30 +52,26 @@ document.addEventListener("DOMContentLoaded", () => {
     terminalBody.scrollTop = terminalBody.scrollHeight;
   };
 
-  const commands = {
-    clear: "",
+  const content = {
     help: `
       <p>Here are the available commands (o_o):</p>
-      <ul class="list-inside list-disc">
-        <li><span class="text-green-400">about</span> - Who I am</li>
-        <li><span class="text-green-400">skills</span> - My technical skills</li>
-        <li><span class="text-green-400">experience</span> - My work experience</li>
-        <li><span class="text-green-400">philosophy</span> - My development philosophy</li>
-        <li><span class="text-green-400">contact</span> - How to reach me</li>
-        <li><span class="text-green-400">date</span> - Display the current date</li>
-        <li><span class="text-green-400">clear</span> - Clear the terminal screen</li>
-      </ul>
+      <p><span class="text-green-400">about</span> - Who I am</p>
+      <p><span class="text-green-400">skills</span> - My technical skills</p>
+      <p><span class="text-green-400">experience</span> - My work experience</p>
+      <p><span class="text-green-400">philosophy</span> - My development philosophy</p>
+      <p><span class="text-green-400">contact</span> - How to reach me</p>
+      <p><span class="text-green-400">date</span> - Display the current date</p>
+      <p><span class="text-green-400">clear</span> - Clear the terminal screen</p>
     `,
-    about:
-      "<p>I'm a Full-Stack Software Engineer who thrives on building complex, mission-critical systems. 🚀 Currently, I'm engineering the core platform that powers the law-making process for U.S. state governments. I handle the full stack, from Python backend services (Django, GraphQL) to React-based web apps and even some C#/.NET plugins for Microsoft Office. It's pretty cool stuff! (⌐■_■)b</p>",
+    about: `
+      <p>I'm a Full-Stack Software Engineer who thrives on building complex, mission-critical systems. 🚀 Currently, I'm engineering the core platform that powers the law-making process for U.S. state governments. I handle the full stack, from Python backend services (Django, GraphQL) to React-based web apps and even some C#/.NET plugins for Microsoft Office. It's pretty cool stuff! (⌐■_■)b</p>
+    `,
     skills: `
       <p>Here's my tech toolbox 🧰: (＾▽＾)/</p>
-      <ul class="list-inside list-disc">
-        <li><strong>Backend:</strong> Python (Django, GraphQL), Node.js, C#/.NET</li>
-        <li><strong>Frontend:</strong> React, Next.js, JavaScript (ES6+), TypeScript, Astro, Tailwind CSS</li>
-        <li><strong>Databases:</strong> PostgreSQL, MongoDB, Elasticsearch, Redis</li>
-        <li><strong>DevOps:</strong> AWS, Jenkins, Docker, GitHub Workflows, CI/CD</li>
-      </ul>
+      <p><strong>Backend:</strong> Python (Django, GraphQL), Node.js, C#/.NET</p>
+      <p><strong>Frontend:</strong> React, Next.js, JavaScript (ES6+), TypeScript, Astro, Tailwind CSS</p>
+      <p><strong>Databases:</strong> PostgreSQL, MongoDB, Elasticsearch, Redis</p>
+      <p><strong>DevOps:</strong> AWS, Jenkins, Docker, GitHub Workflows, CI/CD</p>
     `,
     experience: `
       <p>I've ventured through diverse domains like fintech, where I automated financial data processing, and B2B compliance platforms. 🏦 My experience has taught me that robust systems are built on a solid foundation. I'm all about that clean, maintainable code (SOLID principles!), fully automated CI/CD pipelines with Docker, and using the right data tools for the job, like PostgreSQL, Elasticsearch, and Redis. It's all about building things that last! (▀̿Ĺ̯▀̿ ̿)</p>
@@ -85,12 +81,35 @@ document.addEventListener("DOMContentLoaded", () => {
     `,
     contact: `
       <p>You can reach me here: (☞ﾟヮﾟ)☞</p>
-      <ul class="list-inside list-disc">
-        <li>Email: <a href="mailto:dvynohradovv@proton.me" class="text-blue-400 underline">dvynohradovv@proton.me</a></li>
-        <li>LinkedIn: <a href="https://www.linkedin.com/in/dvynohradov/" target="_blank" class="text-blue-400 underline">https://www.linkedin.com/in/dvynohradov/</a></li>
-        <li>GitHub: <a href="https://github.com/dvynohradov" target="_blank" class="text-blue-400 underline">https://github.com/dvynohradov</a></li>
-      </ul>
+      <div class="flex justify-center space-x-4 mt-4">
+        <a href="mailto:dvynohradovv@proton.me" class="bg-purple-800 hover:bg-purple-700 text-white font-bold py-2 px-4 rounded inline-flex items-center">
+          <i class="fas fa-envelope w-4 h-4 ml-2"></i>
+          <span>Email</span>
+        </a>
+        <a href="https://www.linkedin.com/in/dvynohradov/" target="_blank" class="bg-blue-600 hover:bg-blue-500 text-white font-bold py-2 px-4 rounded inline-flex items-center">
+          <i class="fab fa-linkedin w-4 h-4 ml-2"></i>
+          <span>LinkedIn</span>
+        </a>
+        <a href="https://github.com/dvynohradovv" target="_blank" class="bg-gray-400 hover:bg-gray-300 text-white font-bold py-2 px-4 rounded inline-flex items-center">
+          <i class="fab fa-github w-4 h-4 ml-2"></i>
+          <span>GitHub</span>
+        </a>
+        <a href="https://t.me/dvynohradov" target="_blank" class="bg-blue-400 hover:bg-blue-300 text-white font-bold py-2 px-4 rounded inline-flex items-center">
+          <i class="fab fa-telegram w-4 h-4 ml-2"></i>
+          <span>Telegram</span>
+        </a>
+      </div>
     `,
+  };
+
+  const commands = {
+    clear: "",
+    help: content.help,
+    about: content.about,
+    skills: content.skills,
+    experience: content.experience,
+    philosophy: content.philosophy,
+    contact: content.contact,
     date: () => new Date().toDateString(),
   };
 
@@ -195,6 +214,8 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   runCommand("about", () => {
-    runCommand("skills");
+    runCommand("skills", () => {
+      runCommand("contact");
+    });
   });
 });
