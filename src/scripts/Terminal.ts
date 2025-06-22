@@ -148,8 +148,7 @@ export class Terminal {
         this.ui.type(loadingTextElement, `Loading profile...`, 15, () => {
           setTimeout(() => {
             this.ui.clearHistory();
-            // this.runAbout();
-            this.runContact();
+            this.runAbout();
           }, 3000);
         });
       },
